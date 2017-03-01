@@ -25,7 +25,19 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "",
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0",
+							    "pose": {
+							        "state": "FaceUp",
+							        "timeStamp": 1483241696789,
+						            "timeStampString": "20170101123456.789+0900"
+							    }
+                            }
+                        }
                     }
                 }
             },
@@ -50,7 +62,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "",
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0"
+                            }
+                        }
                     }
                 }
             },
@@ -68,7 +87,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": ""
+                        "description": "",
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0"
+                            }
+                        }
                     }
                 }
             }

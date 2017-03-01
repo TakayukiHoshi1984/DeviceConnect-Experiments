@@ -28,6 +28,14 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/HumidityResponse"
+						},
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0",
+								"humidity": 0.1
+                            }
                         }
                     }
                 }

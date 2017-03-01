@@ -28,7 +28,32 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/DeviceOrientationResponse"
-                        }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0",
+                                "orientation": {
+	                                "acceleration": {
+		                                "x": 0.12345678901234567,
+		                                "y": 0.98765432109876543,
+		                                "z": 0.24680135792468013
+									},
+	                                "rotationRate": {
+		                                "alpha": -0.24680135792468013,
+		                                "beta": 0.12345678901234567,
+		                                "gamma": -0.98765432109876543
+									},
+	                                "accelerationIncludingGravity": {
+		                                "x": 0.24680135792468013,
+		                                "y": 0.12345678901234567,
+		                                "z": 9.87654321098
+									},
+									"interval": 0
+								}
+                            }
+                        }						
                     }
                 }
             },
@@ -56,7 +81,15 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/EventRegistrationResponse"
-                        }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0",
+								"value": "Register OnDeviceOrientation event"
+                            }
+                        }						
                     }
                 },
                 "x-event": {
@@ -82,7 +115,15 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/EventUnregistrationResponse"
-                        }
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0",
+								"value": "Unregister OnDeviceOrientation event"
+                            }
+                        }						
                     }
                 }
             }

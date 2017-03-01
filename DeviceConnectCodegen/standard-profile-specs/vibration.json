@@ -39,6 +39,13 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/VibrationControlResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0"
+                            }
                         }
                     }
                 }
@@ -60,6 +67,13 @@
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/VibrationControlResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "result": 0,
+                                "product": "Example System",
+                                "version": "1.0.0"
+                            }
                         }
                     }
                 }
