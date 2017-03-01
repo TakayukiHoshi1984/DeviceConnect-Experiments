@@ -34,16 +34,15 @@
                                 "result": 0,
                                 "product": "Example System",
                                 "version": "1.0.0",
-									{
 								"mediaId": "1234",
 								"mimeType": "audio/mpeg",
 								"title": "Test Music 1",
 								"type": "Music",
-								"language", "ja"
+								"language": "ja",
 				                "description": "",
 				                "imageUri": "",
 								"duration": 100,
-								"creators" [
+								"creators": [
 									{
 										"creator": "Tester 1",
 										"role": "Artist"
@@ -54,20 +53,12 @@
 									}
 								],
 								"keywords": [
-									{
-										"Test1"
-									},
-									{
-										"Sample"
-									}
+									"Test1",
+									"Sample"
 								],
 								"genres": [
-									{
-										"J-POP"
-									},
-									{
-										"Sample"
-									}
+									"J-POP",
+									"Sample"
 								]
 							}
                         }
@@ -135,11 +126,11 @@
 										"mimeType": "audio/mpeg",
 										"title": "Test Music 1",
 										"type": "Music",
-										"language", "ja"
+										"language": "ja",
 				                        "description": "",
 				                        "imageUri": "",
 										"duration": 100,
-										"creators" [
+										"creators": [
 											{
 												"creator": "Tester 1",
 												"role": "Artist"
@@ -150,20 +141,12 @@
 											}
 										],
 										"keywords": [
-											{
-												"Test1"
-											},
-											{
-												"Sample"
-											}
+											"Test1",
+											"Sample"
 										],
 										"genres": [
-											{
-												"J-POP"
-											},
-											{
-												"Sample"
-											}
+											"J-POP",
+											"Sample"
 										]
 									},
 									{
@@ -171,11 +154,11 @@
 										"mimeType": "audio/mpeg",
 										"title": "Test Music 2",
 										"type": "Music",
-										"language", "ja"
+										"language": "ja",
 				                        "description": "",
 				                        "imageUri": "",
 										"duration": 200,
-										"creators" [
+										"creators": [
 											{
 												"creator": "Tester 2",
 												"role": "Artist"
@@ -186,20 +169,12 @@
 											}
 										],
 										"keywords": [
-											{
-												"Test 2"
-											},
-											{
-												"Sample"
-											}
+											"Test 2",
+											"Sample"
 										],
 										"genres": [
-											{
-												"J-POP"
-											},
-											{
-												"Sample"
-											}
+											"J-POP",
+											"Sample"
 										]
 									},
 									{
@@ -207,11 +182,11 @@
 										"mimeType": "audio/mpeg",
 										"title": "Test Music 3",
 										"type": "Music",
-										"language", "ja"
+										"language": "ja",
 				                        "description": "",
 				                        "imageUri": "",
 										"duration": 300,
-										"creators" [
+										"creators": [
 											{
 												"creator": "Tester 3",
 												"role": "Artist"
@@ -222,20 +197,12 @@
 											}
 										],
 										"keywords": [
-											{
-												"Test 3"
-											},
-											{
-												"Sample"
-											}
+											"Test 3",
+											"Sample"
 										],
 										"genres": [
-											{
-												"J-POP"
-											},
-											{
-												"Sample"
-											}
+											"J-POP",
+											"Sample"
 										]
 									}										
 								]
