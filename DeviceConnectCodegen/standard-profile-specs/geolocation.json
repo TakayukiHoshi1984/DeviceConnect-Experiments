@@ -16,25 +16,25 @@
                 "summary": "該当デバイスの現在の位置情報を取得する。",
                 "description": "",
                 "parameters": [
-		        	{
-            			"name": "serviceId",
-            			"in": "query",
-            			"required": true,
-            			"type": "string"
-          			},
-          			{
-            			"name": "highAccuracy",
-            			"in": "query",
-           				"required": false,
-            			"type": "boolean"
-          			},
-          			{
-            			"name": "maximumAge",
-            			"in": "query",
-            			"required": false,
-            			"type": "number",
-            			"format": "double"
-          			}
+                    {
+                        "name": "serviceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "highAccuracy",
+                        "in": "query",
+                         "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "maximumAge",
+                        "in": "query",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -52,38 +52,38 @@
                 "summary": "",
                 "description": "",
                 "parameters": [
-		        	{
-            			"name": "serviceId",
-            			"in": "query",
-            			"required": true,
-            			"type": "string"
-          			},
-          			{
-            			"name": "highAccuracy",
-            			"in": "query",
-           				"required": false,
-            			"type": "boolean"
-          			},
-          			{
-			            "name": "interval",
-          			    "in": "formData",
-            			"required": false,
-            			"type": "number",
-           				"format": "double"
-          			}
+                    {
+                        "name": "serviceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "highAccuracy",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "formData",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
                 ],
                 "responses": {
                     "200": {
                         "description": "",
                         "schema": {
                             "$ref": "#/definitions/OnWatchPositionResponse"
-						},
+                        },
                         "examples": {
                             "application/json": {
                                 "result": 0,
                                 "product": "Example System",
                                 "version": "1.0.0",
-								"position": {
+                                "position": {
                                     "coordinates": {
                                         "latitude": 37.52104948,
                                         "longitude": 139.93875834,
@@ -106,25 +106,25 @@
                 "summary": "該当デバイスの位置情報定期通知イベントを開始する。",
                 "description": "",
                 "parameters": [
-		        	{
-            			"name": "serviceId",
-            			"in": "query",
-            			"required": true,
-            			"type": "string"
-          			},
-          			{
-            			"name": "highAccuracy",
-            			"in": "query",
-           				"required": false,
-            			"type": "boolean"
-          			},
-          			{
-			            "name": "interval",
-          			    "in": "formData",
-            			"required": false,
-            			"type": "number",
-           				"format": "double"
-          			}
+                    {
+                        "name": "serviceId",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "highAccuracy",
+                        "in": "query",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "interval",
+                        "in": "formData",
+                        "required": false,
+                        "type": "number",
+                        "format": "double"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -137,14 +137,34 @@
                                 "result": 0,
                                 "product": "Example System",
                                 "version": "1.0.0",
-								"value": "Register OnWatchPosition event"
+                                "value": "Register OnWatchPosition event"
                             }
-                        }						
+                        }
                     }
                 },
                 "x-event": {
                     "schema": {
                         "$ref": "#/definitions/OnWatchPositionEvent"
+                    },
+                    "examples": {
+                        "application/json": {
+                            "serviceId": "Host.dummyId.localhost.deviceconnect.org",
+                            "profile": "geolocation",
+                            "attribute": "onwatchposition",
+                            "position": {
+                                "coordinates": {
+                                    "latitude": 37.52104948,
+                                    "longitude": 139.93875834,
+                                    "altitude": 285,
+                                    "accuracy": 31,
+                                    "altitudeAccuracy": 15,
+                                    "heading": 0,
+                                    "speed": 0
+                                },
+                                "timeStamp": 1483241696789,
+                                "timeStampString": "20170101123456.789+0900"
+                            }
+                        }
                     }
                 }
             },
@@ -171,9 +191,9 @@
                                 "result": 0,
                                 "product": "Example System",
                                 "version": "1.0.0",
-								"value": "Unregister OnWatchPosition event"
+                                "value": "Unregister OnWatchPosition event"
                             }
-                        }						
+                        }
                     }
                 }
             }
