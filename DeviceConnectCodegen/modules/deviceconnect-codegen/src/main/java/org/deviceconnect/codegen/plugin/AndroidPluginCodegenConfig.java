@@ -630,18 +630,20 @@ public class AndroidPluginCodegenConfig extends AbstractPluginCodegenConfig {
     private void writeExampleResponse(final ObjectProperty root, final String rootName,
                                       final List<String> lines) {
         lines.add("Bundle " + rootName + " = response.getExtras();");
-        writeExampleMessage(root, rootName, lines);
+        writeExampleMessage(root, rootName, "", lines);
         lines.add("response.putExtras(" + rootName + ");");
     }
 
     private void writeExampleEvent(final ObjectProperty root, final String rootName,
                                    final List<String> lines) {
         lines.add("Bundle " + rootName + " = message.getExtras();");
-        writeExampleMessage(root, rootName, lines);
+        writeExampleMessage(root, rootName, "", lines);
         lines.add("message.putExtras(" + rootName + ");");
     }
 
-    private void writeExampleMessage(final ObjectProperty root, final String rootName,
+    private void writeExampleMessage(final ObjectProperty root,
+                                     final String rootName,
+                                     final String objectNamePrefix,
                                      final List<String> lines) {
         Map<String, Property> props = root.getProperties();
         if (props == null) {
@@ -666,9 +668,12 @@ public class AndroidPluginCodegenConfig extends AbstractPluginCodegenConfig {
                 }
                 lines.add(arrayClassName + "[] " + propName + " = new " + arrayClassName + "[1];");
                 if ("object".equals(itemsProp.getType())) {
-                    lines.add(propName + "[0] = new Bundle();");
-                    writeExampleMessage((ObjectProperty) itemsProp, propName + "[0]", lines);
-                    lines.add(rootName + ".putParcelableArray(\"" + propName + "\", " + propName + ");");
+                    String index = "0";
+                    String objectPropName = getObjectName(objectNamePrefix, propName);
+                    String arrayPropName = objectPropName  + "[" + index + "]";
+                    lines.add(arrayPropName + " = new Bundle();");
+                    writeExampleMessage((ObjectProperty) itemsProp, arrayPropName, objectPropName, lines);
+                    lines.add(rootName + ".putParcelableArray(\"" + propName + "\", " + objectPropName + ");");
                 } else {
                     lines.add(propName + "[0] = " + getExampleValue(itemsProp) + ";");
                     String setterName = getSetterName(itemsProp.getType(), itemsProp.getFormat());
@@ -683,9 +688,10 @@ public class AndroidPluginCodegenConfig extends AbstractPluginCodegenConfig {
                     continue;
                 }
                 objectProp = (ObjectProperty) prop;
-                lines.add("Bundle " + propName + " = new Bundle();");
-                writeExampleMessage(objectProp, propName, lines);
-                lines.add(rootName  + ".putBundle(\"" + propName + "\", " + propName + ");");
+                String objectPropName = getObjectName(objectNamePrefix, propName);
+                lines.add("Bundle " + objectPropName + " = new Bundle();");
+                writeExampleMessage(objectProp, objectPropName, objectPropName, lines);
+                lines.add(rootName  + ".putBundle(\"" + propName + "\", " + objectPropName + ");");
             } else {
                 String setterName = getSetterName(type, format);
                 if (setterName == null) {
@@ -694,6 +700,37 @@ public class AndroidPluginCodegenConfig extends AbstractPluginCodegenConfig {
                 lines.add(rootName + "." + setterName +  "(\""+ propName + "\", " + getExampleValue(prop) + ");");
             }
         }
+    }
+
+    private String getObjectName(final String rootName, final String name) {
+        return concatAsCamelCase(rootName, name);
+    }
+
+    private String concatAsCamelCase(final String a, final String b) {
+        if (isEmpty(a) && isEmpty(b)) {
+            return "";
+        }
+        if (isEmpty(a)) {
+            return b;
+        }
+        if (isEmpty(b)) {
+            return a;
+        }
+        return a + capitalize(b);
+    }
+
+    private boolean isEmpty(final String str) {
+        return "".equals(str);
+    }
+
+    private String capitalize(final String str) {
+        if (str == null) {
+            return null;
+        }
+        if (isEmpty(str)) {
+            return "";
+        }
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
     private String getSetterName(final String type, final String format) {
