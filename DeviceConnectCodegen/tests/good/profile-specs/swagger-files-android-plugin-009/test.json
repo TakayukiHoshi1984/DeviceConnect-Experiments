@@ -1,0 +1,285 @@
+{
+    "swagger": "2.0",
+    "basePath": "/gotapi/test",
+    "info": {
+        "title": "",
+        "version": "2.0.0",
+        "description": ""
+    },
+    "consumes": [
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "paths": {
+        "/sameName": {
+            "get": {
+                "operationId": "testSameNameGet",
+                "x-type": "one-shot",
+                "summary": "",
+                "description": "",
+                "parameters": [{
+                    "name": "serviceId",
+                    "description": "サービスID",
+                    "in": "formData",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/SameNameResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "product": "Example System",
+                                "version": "1.0",
+                                "result": 0,
+                                "someProp": {
+                                    "sameNameProp": {
+                                        "value": 1
+                                    }
+                                },
+                                "otherObjectProp": {
+                                    "sameNameProp": {
+                                        "value": 1
+                                    }
+                                },
+                                "otherArrayProp": [{
+                                    "sameNameProp": {
+                                        "value": 1
+                                    }
+                                }]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/onSameName": {
+            "put": {
+                "operationId": "testOnSameNamePut",
+                "x-type": "event",
+                "summary": "",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "serviceId",
+                        "description": "サービスID。",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/EventRegistrationResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "product": "Example System",
+                                "version": "1.0",
+                                "result": 0
+                            }
+                        }
+                    }
+                },
+                "x-event": {
+                    "schema": {
+                        "$ref": "#/definitions/SameNameEvent"
+                    },
+                    "examples": {
+                        "application/json": {
+                            "servieId": "xxxxx",
+                            "profile" : "test",
+                            "attribute" : "onSameName",
+                            "someProp": {
+                                "sameNameProp": {
+                                    "value": 1
+                                }
+                            },
+                            "otherObjectProp": {
+                                "sameNameProp": {
+                                    "value": 1
+                                }
+                            },
+                            "otherArrayProp": [{
+                                "sameNameProp": {
+                                    "value": 1
+                                }
+                            }]
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "testOnSameNameDelete",
+                "x-type": "event",
+                "summary": "",
+                "description": "",
+                "parameters": [{
+                    "name": "serviceId",
+                    "description": "サービスID。",
+                    "in": "query",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/EventUnregistrationResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "product": "Example System",
+                                "version": "1.0",
+                                "result": 0
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "SameNameResponse": {
+            "type": "object",
+            "allOf": [{
+                "$ref": "#/definitions/CommonResponse"
+            }, {
+                "$ref": "#/definitions/SameNameInfo"
+            }]
+        },
+        "SameNameInfo": {
+            "type": "object",
+            "properties": {
+                "someProp": {
+                    "type": "object",
+                    "properties": {
+                        "sameNameProp": {
+                            "type": "object",
+                            "properties": {
+                                "value": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "otherObjectProp": {
+                    "type": "object",
+                    "properties": {
+                        "sameNameProp": {
+                            "type": "object",
+                            "properties": {
+                                "value": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                },
+                "otherArrayProp": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "sameNameProp": {
+                                "type": "object",
+                                "properties": {
+                                    "value": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "SameNameEvent": {
+            "type": "object",
+            "allOf": [{
+                "$ref": "#/definitions/CommonEvent"
+            }, {
+                "$ref": "#/definitions/SameNameInfo"
+            }]
+        },
+        "EventRegistrationResponse": {
+            "type": "object",
+            "allOf": [{
+                "$ref": "#/definitions/CommonResponse"
+            }]
+        },
+        "EventUnregistrationResponse": {
+            "type": "object",
+            "allOf": [{
+                "$ref": "#/definitions/CommonResponse"
+            }]
+        },
+        "CommonResponse": {
+            "type": "object",
+            "required": [
+                "result",
+                "product",
+                "version"
+            ],
+            "properties": {
+                "result": {
+                    "type": "integer",
+                    "title": "処理結果",
+                    "description": "0:正常応答<br>0以外:異常応答"
+                },
+                "product": {
+                    "type": "string",
+                    "title": "システム名",
+                    "description": "DeviceConnectシステムの名前。"
+                },
+                "version": {
+                    "type": "string",
+                    "title": "システムバージョン",
+                    "description": "DeviceConnectシステムのバージョン名。"
+                },
+                "hmac": {
+                    "type": "string",
+                    "title": "署名",
+                    "description": "レスポンスに対する署名。アプリケーション側から事前にHMACキーを共有されていた場合は必須。"
+                }
+            }
+        },
+        "CommonEvent": {
+            "type": "object",
+            "required": [
+                "serviceId",
+                "profile",
+                "interface",
+                "attribute"
+            ],
+            "properties": {
+                "serviceId": {
+                    "type": "string",
+                    "title": "サービスID",
+                    "description": "イベントを送信したサービスのID"
+                },
+                "profile": {
+                    "type": "string",
+                    "title": "プロファイル名",
+                    "description": "プロファイル名。"
+                },
+                "interface": {
+                    "type": "string",
+                    "title": "インターフェース名",
+                    "description": "インターフェース名。"
+                },
+                "attribute": {
+                    "type": "string",
+                    "title": "アトリビュート名",
+                    "description": "アトリビュート名。"
+                }
+            }
+        }
+    }
+}
