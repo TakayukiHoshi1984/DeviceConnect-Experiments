@@ -74,10 +74,13 @@ class MultipleSwaggerConverter {
 
             // definitionsのマージ
             Map <String, Model> cacheDefinitions = cache.getDefinitions();
-            for (Map.Entry<String, Model> definition : swagger.getDefinitions().entrySet()) {
-                cacheDefinitions.put(definition.getKey(), definition.getValue());
+            Map<String, Model> definitions = swagger.getDefinitions();
+            if (cacheDefinitions != null && definitions != null) {
+                for (Map.Entry<String, Model> definition : definitions.entrySet()) {
+                    cacheDefinitions.put(definition.getKey(), definition.getValue());
+                }
+                cache.setDefinitions(cacheDefinitions);
             }
-            cache.setDefinitions(cacheDefinitions);
         }
 
         // 重複チェック
